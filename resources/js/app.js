@@ -7,12 +7,9 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
-import { createApp } from "vue/dist/vue.esm-bundler";
+import { createApp } from 'vue/dist/vue.esm-bundler';
 import router from './router';
 
-createApp({
-    components: {
 
-    }
-}).use(router).mount('#app')
+createApp({}).use(router).mount('#app')
 
