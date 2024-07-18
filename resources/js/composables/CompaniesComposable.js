@@ -2,6 +2,8 @@ import { ref } from 'vue'
 import axios from "axios";
 import { useRouter } from 'vue-router';
 
+
+
 export default function useCompaniesComposable() {
     const companies = ref([])
     const company = ref([])
