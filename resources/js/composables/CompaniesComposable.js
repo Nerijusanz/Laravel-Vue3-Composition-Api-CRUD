@@ -39,11 +39,11 @@ export default function useCompaniesComposable() {
         }
     }
 
-    const updateCompany = async (id) => {
+    const updateCompany = async (id,data) => {
         const base_component_url=base_url+component_url+'/'+id;
         errors.value = ''
         try {
-            await axios.put(base_component_url, company.value)
+            await axios.put(base_component_url, data)
             await router.push({name: 'companies.index'})
         } catch (e) {
             if (e.response.status === 422) {

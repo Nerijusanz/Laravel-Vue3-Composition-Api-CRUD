@@ -73,7 +73,10 @@ export default {
         })
 
         const saveCompany = async () => {
-            await updateCompany(props.id)
+
+            const {id} = company.value
+
+            await updateCompany(id,{...company.value})
         }
 
         return {
