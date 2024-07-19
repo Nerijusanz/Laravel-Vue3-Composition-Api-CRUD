@@ -5,25 +5,32 @@ import { useRouter } from 'vue-router';
 
 
 export default function useCompaniesComposable() {
+
+    const base_url = '/api/v1';
+    const component_url = '/companies';
+
     const companies = ref([])
     const company = ref([])
     const router = useRouter()
     const errors = ref('')
 
     const getCompanies = async () => {
-        let response = await axios.get('/api/v1/companies')
+        const base_component_url = base_url+component_url;
+        let response = await axios.get(base_component_url)
         companies.value = response.data.data;
     }
 
     const getCompany = async (id) => {
-        let response = await axios.get('/api/v1/companies/' + id)
+        const base_component_url = base_url+component_url+'/'+id;
+        let response = await axios.get(base_component_url)
         company.value = response.data.data;
     }
 
     const storeCompany = async (data) => {
+        const base_component_url = base_url+component_url;
         errors.value = ''
         try {
-            await axios.post('/api/v1/companies', data)
+            await axios.post(base_component_url, data)
             await router.push({name: 'companies.index'})
         } catch (e) {
             if (e.response.status === 422) {
@@ -33,9 +40,10 @@ export default function useCompaniesComposable() {
     }
 
     const updateCompany = async (id) => {
+        const base_component_url=base_url+component_url+'/'+id;
         errors.value = ''
         try {
-            await axios.put('/api/v1/companies/' + id, company.value)
+            await axios.put(base_component_url, company.value)
             await router.push({name: 'companies.index'})
         } catch (e) {
             if (e.response.status === 422) {
@@ -45,7 +53,8 @@ export default function useCompaniesComposable() {
     }
 
     const destroyCompany = async (id) => {
-        await axios.delete('/api/v1/companies/' + id)
+        const base_component_url = base_url+component_url+'/'+id;
+        await axios.delete(base_component_url)
     }
 
 
