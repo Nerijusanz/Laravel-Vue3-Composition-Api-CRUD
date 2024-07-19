@@ -3,16 +3,15 @@ import axios from "axios";
 import { useRouter } from 'vue-router';
 
 
-
 export default function useCompaniesComposable() {
 
+    const router = useRouter()
     const base_url = '/api/v1';
     const component_url = '/companies';
 
     const companies = ref([])
     const company = ref([])
     const errors = ref([])
-    const router = useRouter()
 
 
     const getCompanies = async () => {
