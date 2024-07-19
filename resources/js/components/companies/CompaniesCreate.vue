@@ -1,12 +1,9 @@
 <template>
-    <div v-if="errors">
-        <div v-for="(v, k) in errors" :key="k" class="bg-red-500 text-black rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
-            <p v-for="error in v" :key="error" class="text-sm">
-            {{ error }}
-            </p>
-        </div>
+    <div v-if="errors" class="bg-red-500 text-black rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
+      <p v-for="(error,idx) in errors" :key="idx">
+        {{ error }}
+      </p>
     </div>
-
      <form class="space-y-6" @submit.prevent="saveCompany">
          <div class="space-y-4 rounded-md shadow-sm">
              <div>
@@ -71,6 +68,7 @@
          const saveCompany = async () => {
              await storeCompany({...form});
          }
+
 
          return {
              form,

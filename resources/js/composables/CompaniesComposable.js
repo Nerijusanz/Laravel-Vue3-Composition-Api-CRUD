@@ -34,7 +34,8 @@ export default function useCompaniesComposable() {
             await router.push({name: 'companies.index'})
         } catch (e) {
             if (e.response.status === 422) {
-                errors.value = e.response.data.errors
+                const errorsObj = e.response.data.errors;
+                errors.value = Object.keys(errorsObj).map((key) => errorsObj[key][0]);
             }
         }
     }
@@ -47,7 +48,8 @@ export default function useCompaniesComposable() {
             await router.push({name: 'companies.index'})
         } catch (e) {
             if (e.response.status === 422) {
-                errors.value = e.response.data.errors
+                const errorsObj = e.response.data.errors;
+                errors.value = Object.keys(errorsObj).map((key) => errorsObj[key][0]);
             }
         }
     }
