@@ -11,8 +11,9 @@ export default function useCompaniesComposable() {
 
     const companies = ref([])
     const company = ref([])
+    const errors = ref([])
     const router = useRouter()
-    const errors = ref('')
+
 
     const getCompanies = async () => {
         const base_component_url = base_url+component_url;
@@ -28,7 +29,7 @@ export default function useCompaniesComposable() {
 
     const storeCompany = async (data) => {
         const base_component_url = base_url+component_url;
-        errors.value = ''
+        errors.value = [];
         try {
             await axios.post(base_component_url, data)
             await router.push({name: 'companies.index'})
@@ -41,7 +42,7 @@ export default function useCompaniesComposable() {
 
     const updateCompany = async (id,data) => {
         const base_component_url=base_url+component_url+'/'+id;
-        errors.value = ''
+        errors.value = [];
         try {
             await axios.put(base_component_url, data)
             await router.push({name: 'companies.index'})
